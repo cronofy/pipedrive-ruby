@@ -126,6 +126,11 @@ module Pipedrive
         res.ok? ? new_list(res) : bad_response(res,{:name => name}.merge(opts))
       end
 
+      def find_by_email(email, opts={})
+        res = get "#{resource_path}/find", :query => { :term => email }.merge(opts)
+        res.ok? ? new_list(res) : bad_response(res,{:email => email}.merge(opts))
+      end
+
       def find_with_options(opts = { start: 0 })
         res = get "#{resource_path}", query: opts
         res.ok? ? new_list(res) : bad_response(res,opts)

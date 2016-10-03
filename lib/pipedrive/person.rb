@@ -7,6 +7,10 @@ module Pipedrive
         find_by_name(name, :org_id => opts[:org_id]).first || create(opts.merge(:name => name))
       end
 
+      def find_or_create_by_email(email, opts={})
+        find_by_email(email, :org_id => opts[:org_id]).first || create(opts.merge(:email => email))
+      end
+
     end
 
     def deals()
